@@ -24,7 +24,7 @@ To start work with calculator choose an operation by entering numbers from 1 to 
 
 Then follow instructions and enjoy the process)
 
-# Techbology
+# Technology
 Program language: C#
 Platform: Visual Studio / .NET
 Git: GitHub
