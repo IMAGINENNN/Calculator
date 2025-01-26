@@ -1,26 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Calculator;
 
 namespace Calculator
 {
     internal class Program
     {
-        //Creating input variables from user
+        // Creating input variables from user
         static double percent;
         static double value;
         static double[] values;
         static double result;
         
-        //To exit of cycle in case of incorrect input
+        // Exit of cycle in case of incorrect input
         static bool wrongNumberEntered = false;
 
-        //Creatint methods for taking values
-        static void AskForVariebles()
+        // Method that take`s 2 values
+        static void AskForTwoVariebles()
         {
             values = new double[2];
             Console.Clear();
@@ -50,6 +45,7 @@ namespace Calculator
             }
         }
 
+        // Method that take`s multiple values
         static void AskForMultipleVariebles()
         {
             Console.Clear();
@@ -60,6 +56,7 @@ namespace Calculator
             {
                 variablesLenght = Convert.ToInt32(Console.ReadLine());
             }
+            // Catching incorrect input
             catch (Exception)
             {
                 Console.WriteLine("Wrong value, try again");
@@ -68,7 +65,8 @@ namespace Calculator
             }
 
             values = new double[variablesLenght];
-
+            
+            // Filling array
             for (int i = 0; i < values.Length; i++)
             {
                 Console.WriteLine($"Enter Value {i + 1}:");
@@ -79,6 +77,7 @@ namespace Calculator
         {
             while(true)
             {
+                const string ExitCommand = "exit";
                 Console.Clear();
 
                 Console.WriteLine("Calculator");
@@ -94,21 +93,23 @@ namespace Calculator
                 Console.WriteLine();
 
                 string inputData = Console.ReadLine();
+                bool isExitCommand = ExitCommand.Equals(inputData, StringComparison.OrdinalIgnoreCase);
 
-                bool wrongInPutData = false;
-
-                // Checking if user entered correct number
-                if (inputData != "1" & inputData != "2" & inputData != "3" & inputData != "4" & inputData != "5" & inputData != "6")
-                {
-                    wrongInPutData = true;
-                }
-                
-                if (wrongInPutData)
+                // Checking if user entered incorrect number
+                if (inputData != "1" & inputData != "2" & inputData != "3" & inputData != "4" & inputData != "5" & inputData != "6" & !isExitCommand)
                 {
                     Console.Clear();
                     Console.WriteLine("Entered wrong number, try again");
                     Console.ReadLine();
                     continue;
+                }
+                
+                // Exit from the program
+                if (isExitCommand)
+                {
+                    Console.WriteLine("Program stopped");
+
+                    break;
                 }
 
                 switch (inputData)
@@ -134,7 +135,7 @@ namespace Calculator
                         Console.ReadLine();
                         break;
                     case "2":
-                        AskForVariebles();
+                        AskForTwoVariebles();
                         if (wrongNumberEntered)
                         {
                             continue;
@@ -145,7 +146,7 @@ namespace Calculator
                         Console.ReadLine();
                         break;
                     case "3":
-                        AskForVariebles();
+                        AskForTwoVariebles();
                         if (wrongNumberEntered)
                         {
                             continue;
